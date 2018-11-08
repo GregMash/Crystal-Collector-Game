@@ -7,63 +7,58 @@ if they go over the value, increment losses - reset
 */
 
 
-
-var targetNum = Math.floor(Math.random() * 120) + 19;
+//This sets the target number for the user to guess up to
+var targetNum = Math.floor(Math.random() * 102) + 19;
 console.log(targetNum);
 $("#target-number").text(targetNum);
 
+//This starts the user score at 0
 var counter = 0;
+$("#score").text(counter);
 
-var number1 = Math.floor(Math.random() * 12 + 1);
-console.log(number1);
-var number2 = Math.floor(Math.random() * 12 + 1);
-console.log(number2);
-var number3 = Math.floor(Math.random() * 12 + 1);
-console.log(number3);
-var number4 = Math.floor(Math.random() * 12 + 1);
-console.log(number4);
+//This starts wins at 0
+var wins = 0;
+$('#wins').text(wins);
+
+//This starts losses at 0
+var losses = 0;
+$('#losses').text(losses);
+
+//This function generates a random number for the crystal value between 1 and 12
+function numGenerate() {
+    var crystalNumber = Math.floor(Math.random() * 12 + 1);
+    return crystalNumber;
+}
+
+//This gives each crystal in the HTML an attribute of data-value, and a value of a random number from the numGenerate function
+$("#crystal1").attr("data-value", numGenerate());
+$("#crystal2").attr("data-value", numGenerate());
+$("#crystal3").attr("data-value", numGenerate());
+$("#crystal4").attr("data-value", numGenerate());
+
+//This is our reset function
 
 
-$("#1").on("click", function () {
-    counter += number1;
+
+
+//This is our click event
+$(".crystal").on("click", function () {
+    var crystalNumber = ($(this).attr("data-value"));
+    crystalNumber = parseInt(crystalNumber);
+    console.log(crystalNumber);
+
+
+    counter += crystalNumber;
     console.log('you clicked a crystal ' + counter + " times");
+    $("#score").text(counter);
 
     if (counter === targetNum) {
-        console.log("winner winner");
+        wins++;
+        $('#wins').text(wins);
+
     } else if (counter > targetNum) {
-        console.log('LOSER');
-    }
-});
+        losses++;
+        $('#losses').text(losses);
 
-$("#2").on("click", function () {
-    counter += number2;
-    console.log('you clicked a crystal ' + counter + " times");
-
-    if (counter === targetNum) {
-        console.log("winner winner");
-    } else if (counter > targetNum) {
-        console.log('LOSER');
-    }
-});
-
-$("#3").on("click", function () {
-    counter += number3;
-    console.log('you clicked a crystal ' + counter + " times");
-
-    if (counter === targetNum) {
-        console.log("winner winner");
-    } else if (counter > targetNum) {
-        console.log('LOSER');
-    }
-});
-
-$("#4").on("click", function () {
-    counter += number4;
-    console.log('you clicked a crystal ' + counter + " times");
-
-    if (counter === targetNum) {
-        console.log("winner winner");
-    } else if (counter > targetNum) {
-        console.log('LOSER');
     }
 });
