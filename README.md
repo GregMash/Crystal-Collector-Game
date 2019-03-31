@@ -10,7 +10,7 @@ Crystal Collector is a Javascript based game that assigns a target number for th
 
 ## Hosted on GitHub
 
-[Game](https://gregmash.github.io/Crystal-Collector-Game/)
+[Game](https://gregmash.github.io/crystal-collector-game/)
 
 ## Technologies utilized
  - HTML
